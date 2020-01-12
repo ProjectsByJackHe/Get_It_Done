@@ -32,18 +32,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             headers: headers).responseJSON {response in
                 guard let json = response.value as? [[String: Any]] else {return}
                 for user in json {
-                    let p1 = Profile(name: user["name"] as! String, repPoints: "0")
-                    self.profiles.append(p1)
+
+                    let prof = Profile(name: user["name"] as! String, repPoints: user["points"] as! String)
+                    self.profiles.append(prof)
                     self.tableView.reloadData()
                     debugPrint(self.profiles)
                 }
         };
-//        let person1 = Profile(name: "Jacky Zhao", repPoints: "69")
-//        let person2 = Profile(name: "Gregor Kiczales", repPoints: "300")
-//        let person3 = Profile(name: "Patrice Belleview", repPoints: "250")
-//        profiles.append(person1)
-//        profiles.append(person2)
-//        profiles.append(person3)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

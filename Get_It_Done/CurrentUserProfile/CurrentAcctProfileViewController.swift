@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class CurrentAcctProfileViewController: UIViewController {
 
     @IBOutlet weak var curName: UILabel!
     @IBOutlet weak var curRepPoints: UILabel!
-    
     
     @IBOutlet weak var newName: UITextField!
     
@@ -26,7 +26,9 @@ class CurrentAcctProfileViewController: UIViewController {
     
     @IBOutlet weak var newSkill3: UITextField!
     
-    let currentUserToken = UserDefaults.standard.url(forKey: "isLogged")
+    let hostname = "https://api.getitdonetoday.online";
+    
+    let token = UserDefaults.standard.string(forKey: "isLogged")
     
     
     @IBAction func saveChangesButton(_ sender: UIButton) {
@@ -38,14 +40,29 @@ class CurrentAcctProfileViewController: UIViewController {
         super.viewDidLoad()
         
         // get current user name, email, and skills from database
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer "+token!,
+            "Accept": "application/json"
+        ]
+        AF.request(hostname+"/auth/me", headers: headers).responseJSON{response in
+            guard let json = response.value as? [String: Any] else {return}
+            self.curName.text = json["name"] as! String
+            self.newEmail.text = json["email"] as! String
+            self.newSkill1.text = json["skill1"] as! String
+            self.newSkill2.text = json["skill2"] as! String
+            self.newSkill3.text = json["skill3"] as! String
+            self.newLocation.text = "Vancouver, BC"
+            self.newName.text = self.curName.text
+            
+        }
         
         
         
         
-        
-        newLocation.text = "Vancouver BC"
-        newName.text = curName.text
         // newEmail.text = ... whatever email we have in the database
+        
+        
+        
         
         // Do any additional setup after loading the view.
     }
