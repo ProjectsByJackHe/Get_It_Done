@@ -64,6 +64,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    @IBAction func settingsButtonPushed(_ sender: UIButton) {
+            let alert = UIAlertController(title: "Settings", message: "default settings configurations", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+            self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func showNotifications(_ sender: UIButton) {
         let alert = UIAlertController(title: "Job notifications", message: "You currently do not have any notifications", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
