@@ -32,6 +32,30 @@ class CurrentAcctProfileViewController: UIViewController {
     
     
     @IBAction func saveChangesButton(_ sender: UIButton) {
+        struct User: Encodable {
+            let name: String
+            let email: String
+            let skill1: String
+            let skill2: String
+            let skill3: String
+        }
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer "+token!,
+            "Accept": "application/json"
+        ]
+        
+        let user = User(name: newName.text ?? "", email: newEmail.text ?? "", skill1: newSkill1.text ?? "", skill2: newSkill2.text ?? "", skill3: newSkill3.text ?? "");
+        
+        AF.request(hostname+"/auth/edit",
+                   method: .post,
+                   parameters: user,
+                   encoder: JSONParameterEncoder.default,
+                   headers: headers).responseJSON {response in
+                        let alert = UIAlertController(title: "Saved", message: "saved", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+                        self.present(alert, animated: true, completion: nil)
+                        print("saved")
+        };
         
     }
     
@@ -47,6 +71,7 @@ class CurrentAcctProfileViewController: UIViewController {
         AF.request(hostname+"/auth/me", headers: headers).responseJSON{response in
             guard let json = response.value as? [String: Any] else {return}
             self.curName.text = json["name"] as! String
+            self.curRepPoints.text = json["points"] as! String
             self.newEmail.text = json["email"] as! String
             self.newSkill1.text = json["skill1"] as! String
             self.newSkill2.text = json["skill2"] as! String
@@ -55,16 +80,6 @@ class CurrentAcctProfileViewController: UIViewController {
             self.newName.text = self.curName.text
             
         }
-        
-        
-        
-        
-        // newEmail.text = ... whatever email we have in the database
-        
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     
 

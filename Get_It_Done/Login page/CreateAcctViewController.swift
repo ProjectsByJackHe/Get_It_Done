@@ -32,7 +32,28 @@ class CreateAcctViewController: UIViewController {
         AF.request(hostname+"/auth/register",
                    method: .post,
                    parameters: login,
-                   encoder: JSONParameterEncoder.default).response {response in debugPrint(response)};
+                   encoder: JSONParameterEncoder.default).responseJSON {response in
+                    guard let json = response.value as? [String: Any] else {return}
+                    
+                    if json["message"] != nil {
+                        // print(json["message"])
+                        // log in failed
+                        let alert = UIAlertController(title: "Error", message: "could not create account", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+                        self.present(alert, animated: true, completion: nil)
+                        print("could not create account")
+                    }
+                    else {
+                        // print(json["token"])
+                        // log in successful
+                        UserDefaults.standard.set(json["token"], forKey: "isLogged")
+//                        self.performSegue(withIdentifier: "goHome", sender: self)
+                        let alert = UIAlertController(title: "Success", message: "Account created", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+                        self.present(alert, animated: true, completion: nil)
+                        print("created account")
+                    }
+        };
         
         // alert that an account is made and go back
     }
