@@ -56,7 +56,6 @@ class CurrentAcctProfileViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                         print("saved")
         };
-        
     }
     
     

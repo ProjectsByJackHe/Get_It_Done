@@ -38,7 +38,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zrh-V3-yfZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="zrh-V3-yfZ">
                                 <rect key="frame" x="20" y="44" width="147" height="147"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="147" id="7aY-9s-V4q"/>
@@ -144,6 +144,9 @@
                                 <state key="normal" title="Request job">
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="requestJob:" destination="VaG-3B-qp8" eventType="touchUpInside" id="x0a-23-i1N"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG6-Hu-Hpk">
                                 <rect key="frame" x="195" y="264" width="144" height="21"/>
@@ -156,9 +159,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWD-rw-Gff">
-                                <rect key="frame" x="195" y="352" width="144" height="21"/>
+                                <rect key="frame" x="197" y="352" width="200" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="144" id="C4f-2c-86J"/>
+                                    <constraint firstAttribute="width" constant="200" id="C4f-2c-86J"/>
                                     <constraint firstAttribute="height" constant="21" id="jXC-jk-dAf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -166,29 +169,29 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill#1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQu-rd-7Qs">
-                                <rect key="frame" x="67" y="574" width="49" height="21"/>
+                                <rect key="frame" x="67" y="574" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6Bg-7M-Zei"/>
-                                    <constraint firstAttribute="width" constant="49" id="uQT-nO-PvI"/>
+                                    <constraint firstAttribute="width" constant="200" id="uQT-nO-PvI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill#2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9D-NB-mLq">
-                                <rect key="frame" x="67" y="649" width="52" height="21"/>
+                                <rect key="frame" x="67" y="649" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="oE5-i2-p9P"/>
-                                    <constraint firstAttribute="width" constant="52" id="urC-ms-WQR"/>
+                                    <constraint firstAttribute="width" constant="200" id="urC-ms-WQR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill#3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVA-3W-mIE">
-                                <rect key="frame" x="67" y="721" width="52" height="21"/>
+                                <rect key="frame" x="67" y="721" width="200" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="52" id="FUJ-XA-5Xw"/>
+                                    <constraint firstAttribute="width" constant="200" id="FUJ-XA-5Xw"/>
                                     <constraint firstAttribute="height" constant="21" id="tv6-ur-31L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -244,7 +247,7 @@
                             <constraint firstItem="7Zx-sj-fLl" firstAttribute="leading" secondItem="zrh-V3-yfZ" secondAttribute="trailing" constant="8" id="tIi-6C-BLp"/>
                             <constraint firstItem="A9D-NB-mLq" firstAttribute="leading" secondItem="N8V-8V-yHG" secondAttribute="trailing" constant="15" id="tYe-J1-Plq"/>
                             <constraint firstItem="cG6-Hu-Hpk" firstAttribute="centerX" secondItem="2BM-XP-qlf" secondAttribute="centerX" constant="60" id="tZs-AV-uzG"/>
-                            <constraint firstItem="mWD-rw-Gff" firstAttribute="centerX" secondItem="2BM-XP-qlf" secondAttribute="centerX" constant="60" id="x52-Qa-97o"/>
+                            <constraint firstItem="mWD-rw-Gff" firstAttribute="centerX" secondItem="2BM-XP-qlf" secondAttribute="centerX" constant="90" id="x52-Qa-97o"/>
                             <constraint firstItem="rID-Ok-BVR" firstAttribute="leading" secondItem="as9-Vb-v7i" secondAttribute="leading" constant="20" id="yw8-G4-WgV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="as9-Vb-v7i"/>
@@ -265,6 +268,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Avatar" width="857.5" height="857"/>
         <image name="star" width="40" height="38"/>
     </resources>
 </document>

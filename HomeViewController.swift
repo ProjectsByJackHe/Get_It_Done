@@ -18,9 +18,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        generateAllUsers()
 //        profiles = generateAllUsers()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        profiles = [];
+        generateAllUsers()
     }
     
     func generateAllUsers() -> Void {
@@ -33,7 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let json = response.value as? [[String: Any]] else {return}
                 for user in json {
 
-                    let prof = Profile(name: user["name"] as! String, repPoints: user["points"] as! String)
+                    let prof = Profile(name: user["name"] as! String, repPoints: user["points"] as! String, skill1: user["skill1"] as! String, skill2: user["skill2"] as! String, skill3: user["skill3"] as! String, email: user["email"] as! String)
                     self.profiles.append(prof)
                     self.tableView.reloadData()
                     debugPrint(self.profiles)
@@ -59,10 +63,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: "goToProfile", sender: self)
     }
     
+    
+    @IBAction func showNotifications(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Job notifications", message: "You currently do not have any notifications", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? UserProfileViewController else{return}
         vc.tmpName = profiles[currentIndex].name
         vc.tmpRep = profiles[currentIndex].repPoints
+        vc.tmpSkill1 = profiles[currentIndex].skill1
+        vc.tmpSkill2 = profiles[currentIndex].skill2
+        vc.tmpSkill3 = profiles[currentIndex].skill3
+        vc.tmpEmail = profiles[currentIndex].email
     }
     
 

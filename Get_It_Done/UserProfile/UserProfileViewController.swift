@@ -30,10 +30,21 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var skill2Display: UILabel!
     @IBOutlet weak var skill3Display: UILabel!
     
+    
+    
+    @IBAction func requestJob(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Job query", message: "Please enter details regarding the job", preferredStyle: UIAlertController.Style.alert)
+        alert.addTextField()
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.name.text = self.tmpName
+        self.curName.text = self.name.text
         self.reputation.text = self.tmpRep
         self.curEmail.text = self.tmpEmail
         self.skill1Display.text = self.tmpSkill1
