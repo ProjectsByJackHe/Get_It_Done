@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var profiles:[Profile] = []
-    
+    let hostname = "https://api.getitdonetoday.online";
+    let token = UserDefaults.standard.string(forKey: "isLogged")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func generateAllUsers() -> [Profile]{
         var tempProfiles:[Profile] = []
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer "+token!,
+            "Accept": "application/json"
+        ]
+        AF.request(hostname+"/job/list",
+            headers: headers).responseJSON {response in
+                guard let json = response.value as? [[String: Any]] else {return}
+                for user in json {
+                    let p1 = Profile(name: user["name"] as! String, repPoints: "0")
+                    tempProfiles.append(p1)
+                }
+                
+        };
         let person1 = Profile(name: "Jacky Zhao", repPoints: "69")
         let person2 = Profile(name: "Gregor Kiczales", repPoints: "300")
         let person3 = Profile(name: "Patrice Belleview", repPoints: "250")
