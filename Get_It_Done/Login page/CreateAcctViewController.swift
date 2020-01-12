@@ -16,6 +16,11 @@ class CreateAcctViewController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     let hostname = "https://api.getitdonetoday.online";
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func createAccountButtonPressed(_ sender: UIButton) {
         guard let fullName = fullNameInput.text else {return}
         guard let emailAddress = emailAddressInput.text else {return}

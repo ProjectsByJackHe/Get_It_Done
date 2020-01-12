@@ -30,6 +30,10 @@ class CurrentAcctProfileViewController: UIViewController {
     
     let token = UserDefaults.standard.string(forKey: "isLogged")
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func saveChangesButton(_ sender: UIButton) {
         struct User: Encodable {

@@ -16,6 +16,12 @@ class LogOnViewController: UIViewController {
     let hostname = "https://api.getitdonetoday.online";
     let defaults = UserDefaults.standard
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func LogInButton(_ sender: UIButton) {
         print("login")
         guard let email = emailAddressInput.text else {return}
