@@ -72,9 +72,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func showNotifications(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Job notifications", message: "You currently do not have any notifications", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
-        self.present(alert, animated: true, completion: nil)
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer "+token!,
+            "Accept": "application/json"
+        ]
+        AF.request(hostname+"/auth/getrequests",
+            headers: headers).responseJSON {response in
+                guard let json = response.value as? [[String: Any]] else {return}
+                debugPrint(json.count)
+                let alert = UIAlertController(title: "Job notifications", message: "You currently have "+String(json.count)+" notifications.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action) in alert.dismiss(animated: true, completion: nil)}))
+                self.present(alert, animated: true, completion: nil)
+
+        };
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
