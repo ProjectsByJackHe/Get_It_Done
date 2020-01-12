@@ -15,14 +15,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     let hostname = "https://api.getitdonetoday.online";
     let token = UserDefaults.standard.string(forKey: "isLogged")
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        profiles = generateAllUsers()
+        generateAllUsers()
+//        profiles = generateAllUsers()
         // Do any additional setup after loading the view.
     }
     
-    func generateAllUsers() -> [Profile]{
-        var tempProfiles:[Profile] = []
+    func generateAllUsers() -> Void {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer "+token!,
             "Accept": "application/json"
@@ -32,18 +33,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let json = response.value as? [[String: Any]] else {return}
                 for user in json {
                     let p1 = Profile(name: user["name"] as! String, repPoints: "0")
-                    tempProfiles.append(p1)
+                    self.profiles.append(p1)
+                    self.tableView.reloadData()
+                    debugPrint(self.profiles)
                 }
-                
         };
-        let person1 = Profile(name: "Jacky Zhao", repPoints: "69")
-        let person2 = Profile(name: "Gregor Kiczales", repPoints: "300")
-        let person3 = Profile(name: "Patrice Belleview", repPoints: "250")
-        tempProfiles.append(person1)
-        tempProfiles.append(person2)
-        tempProfiles.append(person3)
-        
-        return tempProfiles
+//        let person1 = Profile(name: "Jacky Zhao", repPoints: "69")
+//        let person2 = Profile(name: "Gregor Kiczales", repPoints: "300")
+//        let person3 = Profile(name: "Patrice Belleview", repPoints: "250")
+//        profiles.append(person1)
+//        profiles.append(person2)
+//        profiles.append(person3)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
