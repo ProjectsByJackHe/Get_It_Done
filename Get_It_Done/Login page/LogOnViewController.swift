@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class LogOnViewController: UIViewController {
+class LogOnViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailAddressInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!

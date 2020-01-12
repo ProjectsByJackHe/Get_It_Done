@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class CurrentAcctProfileViewController: UIViewController {
+class CurrentAcctProfileViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var curName: UILabel!
     @IBOutlet weak var curRepPoints: UILabel!
